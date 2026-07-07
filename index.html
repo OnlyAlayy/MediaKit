@@ -55,6 +55,7 @@
 
     html {
       scroll-behavior: smooth;
+      overflow-x: hidden;
     }
 
     body {
@@ -64,6 +65,7 @@
       transition: background-color 0.5s ease, color 0.5s ease;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
+      width: 100%;
     }
 
     /* Grain Texture Overlay */
@@ -181,12 +183,14 @@
     }
 
     .hero-title {
-      font-size: 7.5rem;
+      font-size: clamp(3rem, 12vw, 7.5rem);
       font-weight: 900;
       line-height: 0.88;
       text-transform: uppercase;
       letter-spacing: -3px;
       margin-bottom: 10px;
+      word-wrap: break-word;
+      width: 100%;
     }
 
     .hero-title .letter {
@@ -1050,10 +1054,6 @@
         gap: 80px;
       }
 
-      .hero-title {
-        font-size: 5.5rem;
-      }
-
       .section-title {
         font-size: 3rem;
       }
@@ -1070,10 +1070,6 @@
     @media (max-width: 768px) {
       .container {
         padding: 0 25px;
-      }
-
-      .hero-title {
-        font-size: 3.8rem;
       }
 
       .stats-container {
@@ -1136,7 +1132,6 @@
       }
 
       .hero-title {
-        font-size: 2.8rem;
         letter-spacing: -1px;
       }
 
