@@ -1,0 +1,1768 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dilan Berriel | Media Kit</title>
+  <link rel="icon" type="image/png" href="logopaginas.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Libraries -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+  <style>
+    :root {
+      --bg: #030303;
+      --bg-surface: #0a0a0a;
+      --text-primary: #ffffff;
+      --text-secondary: #888888;
+      --accent: #d4af37;
+      --accent-soft: rgba(212, 175, 55, 0.12);
+      --glass-bg: rgba(20, 20, 20, 0.65);
+      --glass-border: rgba(255, 255, 255, 0.06);
+      --grain-opacity: 0.035;
+    }
+
+    :root.light {
+      --bg: #f5f4f1;
+      --bg-surface: #ffffff;
+      --text-primary: #0f0f0f;
+      --text-secondary: #555555;
+      --accent: #b48c26;
+      --accent-soft: rgba(180, 140, 38, 0.1);
+      --glass-bg: rgba(255, 255, 255, 0.85);
+      --glass-border: rgba(0, 0, 0, 0.08);
+      --grain-opacity: 0.015;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-primary);
+      font-family: 'Outfit', sans-serif;
+      transition: background-color 0.5s ease, color 0.5s ease;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Grain Texture Overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9998;
+      opacity: var(--grain-opacity);
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 180px;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 50px;
+    }
+
+    /* ===== FLOATING ACTIONS ===== */
+    .floating-actions {
+      position: fixed;
+      top: 40px;
+      right: 40px;
+      display: flex;
+      gap: 12px;
+      z-index: 1000;
+    }
+
+    .btn-action {
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border);
+      color: var(--text-primary);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+
+    .btn-action:hover {
+      background: var(--accent);
+      color: #000;
+      transform: scale(1.12);
+      box-shadow: 0 8px 30px rgba(212, 175, 55, 0.25);
+    }
+
+    .btn-action svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 60px;
+      position: relative;
+      padding: 80px 0;
+    }
+
+    .hero-text {
+      position: relative;
+      z-index: 2;
+    }
+
+    .mk-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--accent-soft);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 30px;
+      padding: 8px 22px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 35px;
+    }
+
+    .mk-badge-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.4;
+        transform: scale(0.7);
+      }
+    }
+
+    .hero-title {
+      font-size: 7.5rem;
+      font-weight: 900;
+      line-height: 0.88;
+      text-transform: uppercase;
+      letter-spacing: -3px;
+      margin-bottom: 10px;
+    }
+
+    .hero-title .letter {
+      display: inline-block;
+      opacity: 0;
+      animation: flicker-in 0.6s forwards cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    @keyframes flicker-in {
+      0% {
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 1;
+      }
+
+      20% {
+        opacity: 0;
+      }
+
+      30% {
+        opacity: 0.6;
+      }
+
+      40% {
+        opacity: 0.2;
+      }
+
+      50% {
+        opacity: 1;
+      }
+
+      60% {
+        opacity: 0;
+      }
+
+      70% {
+        opacity: 0.8;
+      }
+
+      80% {
+        opacity: 0.2;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    .hero-title-outline {
+      display: block;
+      color: transparent;
+      -webkit-text-stroke: 2px var(--text-primary);
+    }
+
+    .hero-role {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      margin-bottom: 30px;
+      margin-top: 20px;
+    }
+
+    .hero-desc {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      line-height: 1.85;
+      max-width: 480px;
+      font-weight: 300;
+    }
+
+    /* Asymmetric Image */
+    .hero-image-wrapper {
+      position: relative;
+      height: 88vh;
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .hero-image {
+      width: 92%;
+      height: 92%;
+      object-fit: cover;
+      border-radius: 200px 20px 200px 20px;
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.35);
+      border: 1px solid var(--glass-border);
+      transition: border-radius 0.8s ease;
+    }
+
+    .hero-image:hover {
+      border-radius: 20px 200px 20px 200px;
+    }
+
+    /* Contact Card */
+    .contact-card {
+      position: absolute;
+      bottom: 12%;
+      left: -60px;
+      z-index: 3;
+      background: var(--glass-bg);
+      backdrop-filter: blur(24px);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 15px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      text-decoration: none;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-origin: left center;
+    }
+
+    .contact-item:hover {
+      transform: scale(1.05);
+    }
+
+    .contact-item svg {
+      width: 15px;
+      height: 15px;
+      color: var(--accent);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+
+    .hero-socials {
+      display: flex;
+      gap: 15px;
+      margin-top: 35px;
+    }
+
+    .social-link {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--glass-border);
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: var(--accent);
+    }
+
+    .social-link:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #000;
+      transform: scale(1.15);
+    }
+
+    .social-link svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* Scroll Indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-secondary);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 50px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      animation: scroll-pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scroll-pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        height: 50px;
+      }
+
+      50% {
+        opacity: 0.3;
+        height: 30px;
+      }
+    }
+
+    /* ===== SECTIONS ===== */
+    .section {
+      padding: 120px 0;
+      position: relative;
+    }
+
+    .section-header {
+      margin-bottom: 60px;
+    }
+
+    .section-label {
+      font-family: 'Space Grotesk', sans-serif;
+      color: var(--accent);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      margin-bottom: 15px;
+    }
+
+    .section-title {
+      font-size: 4rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: -1px;
+    }
+
+    /* ===== STATS ===== */
+    .stats-wrapper {
+      margin-top: -70px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .stats-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      background: var(--glass-bg);
+      backdrop-filter: blur(24px);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+    }
+
+    .stat-box {
+      text-align: center;
+      padding: 45px 20px;
+      transition: all 0.4s ease;
+      border-right: 1px solid var(--glass-border);
+      position: relative;
+    }
+
+    .stat-box:last-child {
+      border-right: none;
+    }
+
+    .stat-box:hover {
+      background: var(--accent-soft);
+    }
+
+    .stat-platform {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 12px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .stat-platform svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .stat-number {
+      font-size: 3.5rem;
+      font-weight: 800;
+      font-family: 'Space Grotesk', sans-serif;
+      margin-bottom: 8px;
+      line-height: 1;
+      background: linear-gradient(180deg, #ffeaa7 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0px 8px 16px rgba(212, 175, 55, 0.25));
+    }
+
+    :root.light .stat-number {
+      background: linear-gradient(180deg, var(--accent) 0%, #8a6a1c 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: none;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    /* ===== BRANDS ===== */
+    .brands-strip {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 60px;
+      flex-wrap: wrap;
+      padding: 60px 0;
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .brand-item {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      transition: all 0.4s ease;
+      opacity: 0.5;
+      cursor: default;
+    }
+
+    .brand-item:hover {
+      opacity: 1;
+      color: var(--accent);
+      transform: scale(1.05);
+    }
+
+    /* ===== SPLIT SECTION ===== */
+    .split-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    /* ===== MARQUEE (ELEGANT) ===== */
+    .marquee-container {
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid var(--glass-border);
+      border-bottom: 1px solid var(--glass-border);
+      color: var(--accent);
+      padding: 15px 0;
+      overflow: hidden;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      margin-bottom: 80px;
+      margin-top: -80px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 400;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+    }
+
+    .marquee-content {
+      display: flex;
+      animation: marquee 25s linear infinite;
+    }
+
+    .marquee-item {
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    @keyframes marquee {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* Demographics (Professional) */
+    .demo-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 30px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .demo-bar-wrap {
+      border: 1px solid var(--glass-border);
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      padding: 30px 40px;
+      border-radius: 12px;
+      transition: all 0.4s ease;
+    }
+
+    .demo-bar-wrap:hover {
+      border-color: rgba(212, 175, 55, 0.3);
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .demo-bar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 20px;
+    }
+
+    .demo-bar-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--text-primary);
+    }
+
+    .demo-bar-percent {
+      font-size: 3rem;
+      font-weight: 700;
+      font-family: 'Space Grotesk', sans-serif;
+      color: var(--accent);
+      line-height: 0.8;
+      text-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+    }
+
+    .demo-bar-track {
+      width: 100%;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.05);
+      position: relative;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .demo-bar-fill {
+      height: 100%;
+      background: var(--accent);
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+      border-radius: 4px;
+    }
+
+    /* Services (Professional) */
+    .services-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .service-row {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 30px;
+      padding: 40px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+      transition: all 0.4s ease;
+    }
+
+    .service-number {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--accent);
+      opacity: 0.7;
+      transition: opacity 0.4s ease;
+    }
+
+    .service-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .service-name {
+      font-size: 2.2rem;
+      font-weight: 700;
+      line-height: 1.2;
+      text-transform: uppercase;
+      letter-spacing: -0.5px;
+      margin-bottom: 10px;
+      color: var(--text-primary);
+      transition: color 0.4s ease;
+    }
+
+    .service-desc {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      font-weight: 300;
+      max-width: 800px;
+    }
+
+    .service-row:hover {
+      background: linear-gradient(145deg, var(--glass-bg), rgba(212, 175, 55, 0.05));
+      border-color: rgba(212, 175, 55, 0.4);
+      transform: translateY(-4px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    }
+
+    .service-row:hover .service-name {
+      color: var(--accent);
+    }
+
+    .service-row:hover .service-number {
+      opacity: 1;
+    }
+
+    @media (max-width: 768px) {
+      .service-row {
+        grid-template-columns: 1fr;
+        padding: 30px;
+        gap: 15px;
+      }
+
+      .service-name {
+        font-size: 1.8rem;
+      }
+
+      .demo-bar-percent {
+        font-size: 2.5rem;
+      }
+    }
+
+    .service-number {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+
+    .service-name {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .service-desc {
+      color: var(--text-secondary);
+      line-height: 1.7;
+      font-size: 1rem;
+      font-weight: 300;
+    }
+
+    /* ===== CTA ===== */
+    .cta-section {
+      text-align: center;
+      padding: 100px 0;
+      position: relative;
+    }
+
+    .cta-title {
+      font-size: 4.5rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -1px;
+      margin-bottom: 25px;
+    }
+
+    .cta-desc {
+      color: var(--text-secondary);
+      font-size: 1.15rem;
+      line-height: 1.7;
+      max-width: 600px;
+      margin: 0 auto 45px;
+      font-weight: 300;
+    }
+
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 45px;
+      border-radius: 60px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      text-decoration: none;
+      border: none;
+    }
+
+    .cta-btn-primary {
+      background: var(--accent);
+      color: #000;
+    }
+
+    .cta-btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3);
+    }
+
+    .cta-btn-outline {
+      background: transparent;
+      color: var(--text-primary);
+      border: 2px solid var(--glass-border);
+    }
+
+    .cta-btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    .cta-btn svg {
+      width: 18px;
+      height: 18px;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .cta-btn-primary:hover svg {
+      transform: translateX(6px);
+    }
+
+    /* ===== PORTFOLIO ===== */
+    .portfolio-grid {
+      columns: 3;
+      column-gap: 25px;
+    }
+
+    .port-item {
+      break-inside: avoid;
+      margin-bottom: 25px;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      cursor: zoom-in;
+    }
+
+    .port-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .port-item:hover img {
+      transform: scale(1.06);
+    }
+
+    .port-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.2) 40%, transparent 100%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      display: flex;
+      align-items: flex-end;
+      padding: 25px;
+    }
+
+    .port-item:hover .port-overlay {
+      opacity: 1;
+    }
+
+    .port-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    /* ===== LIGHTBOX ===== */
+    .lightbox-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.92);
+      backdrop-filter: blur(15px);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      cursor: zoom-out;
+    }
+
+    .lightbox-img {
+      max-width: 100%;
+      max-height: 90vh;
+      border-radius: 16px;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+      cursor: default;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-size: 2.5rem;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      line-height: 1;
+    }
+
+    .lightbox-close:hover {
+      transform: scale(1.15);
+      color: var(--accent);
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--glass-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    /* Elemento fantasma para balancear el centro exacto */
+    .footer::before {
+      content: '';
+      flex: 1;
+    }
+
+    .footer-text {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      text-align: center;
+      flex: 0 1 auto;
+    }
+
+    .creator-watermark {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 10px;
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
+    }
+
+    .creator-watermark:hover {
+      opacity: 1;
+    }
+
+    .creator-signature {
+      height: 32px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .creator-socials {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .creator-social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--glass-border);
+      transition: all 0.3s ease;
+    }
+    
+    :root.light .creator-social-link {
+      background: rgba(0, 0, 0, 0.03);
+    }
+
+    .creator-social-link:hover {
+      transform: scale(1.1);
+    }
+
+    .creator-social-link svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 130px;
+        gap: 40px;
+      }
+
+      .hero-desc {
+        margin: 0 auto;
+      }
+
+      .hero-image-wrapper {
+        justify-content: center;
+        height: 60vh;
+      }
+
+      .hero-image {
+        border-radius: 40px;
+        width: 80%;
+      }
+
+      .contact-card {
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -30px;
+        width: 85%;
+      }
+
+      .stats-container {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .stats-wrapper {
+        margin-top: 70px;
+      }
+
+      .split-section {
+        grid-template-columns: 1fr;
+        gap: 80px;
+      }
+
+      .hero-title {
+        font-size: 5.5rem;
+      }
+
+      .section-title {
+        font-size: 3rem;
+      }
+
+      .cta-title {
+        font-size: 3rem;
+      }
+
+      .scroll-indicator {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 25px;
+      }
+
+      .hero-title {
+        font-size: 3.8rem;
+      }
+
+      .stats-container {
+        grid-template-columns: 1fr;
+      }
+
+      .stat-box {
+        border-right: none;
+        border-bottom: 1px solid var(--glass-border);
+      }
+
+      .stat-box:last-child {
+        border-bottom: none;
+      }
+
+      .footer {
+        flex-direction: column;
+        gap: 25px;
+      }
+      
+      .footer::before {
+        display: none;
+      }
+
+      .creator-watermark {
+        align-items: center;
+      }
+
+      .portfolio-grid {
+        columns: 1;
+      }
+
+      .brands-strip {
+        gap: 30px;
+      }
+
+      .brand-item {
+        font-size: 1rem;
+      }
+
+      .floating-actions {
+        top: 20px;
+        right: 20px;
+        gap: 8px;
+      }
+
+      .btn-action {
+        width: 42px;
+        height: 42px;
+      }
+    }
+
+    @media print {
+      @page {
+        margin: 0;
+      }
+
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        /* Forzar visibilidad para elementos con Framer Motion (fuera de pantalla) */
+        opacity: 1 !important;
+        transform: none !important;
+      }
+
+      body {
+        background-color: var(--bg) !important;
+        color: var(--text-primary) !important;
+      }
+
+      .floating-actions,
+      .scroll-indicator,
+      .pdf-overlay,
+      .lightbox-overlay {
+        display: none !important;
+      }
+
+      body::after {
+        display: none !important;
+      }
+
+      .container {
+        max-width: 100% !important;
+        padding: 0 40px !important;
+      }
+
+      .section, .hero, .stats-container, .stat-box, .port-item, .brands-strip, .cta-section {
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+
+      .hero {
+        min-height: auto !important;
+        padding-top: 40px !important;
+        gap: 20px !important;
+        grid-template-columns: 1fr !important;
+        text-align: center !important;
+      }
+      
+      .hero-image-wrapper {
+        height: auto !important;
+        max-height: none !important;
+        margin-bottom: 80px !important;
+        display: flex !important;
+        justify-content: center !important;
+      }
+
+      .hero-image {
+        width: auto !important;
+        max-width: 80% !important;
+        height: 100% !important;
+        max-height: 450px !important;
+        object-fit: cover !important;
+        border-radius: 40px !important;
+      }
+
+      .contact-card {
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        bottom: -40px !important;
+        width: 85% !important;
+      }
+      
+      .stats-wrapper {
+        margin-top: 40px !important;
+      }
+
+      .section {
+        padding: 40px 0 !important;
+      }
+
+      .marquee-container {
+        margin-bottom: 40px !important;
+      }
+
+      .section-header {
+        margin-bottom: 30px !important;
+      }
+
+      .services-list {
+        gap: 15px !important;
+      }
+
+      .service-row {
+        padding: 25px !important;
+        gap: 20px !important;
+      }
+
+      .service-name {
+        font-size: 1.6rem !important;
+        margin-bottom: 5px !important;
+      }
+
+      .service-desc {
+        font-size: 1rem !important;
+      }
+    }
+
+    .pdf-overlay {
+      position: fixed;
+      inset: 0;
+      background: var(--bg);
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.3rem;
+      color: var(--text-primary);
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel" data-type="module">
+    const { useState, useEffect, useRef, useCallback } = React;
+    const { motion, AnimatePresence, useInView } = window.Motion;
+
+    // ─── TRANSLATIONS ───
+    const T = {
+      es: {
+        badge: "Media Kit",
+        role: "Modelo Publicitario · Actor",
+        about: "Con un enfoque dinámico y profesional, conecto marcas con su audiencia a través de contenido auténtico, campañas de alto impacto y representaciones genuinas. Especializado en comerciales de TV y creación UGC.",
+        scroll: "Scroll",
+        brandsLabel: "Marcas y Proyectos",
+        brands: ["Movistar", "Barra Brava", "Barradas", "Amor Animal"],
+        stats: [
+          { platform: "Instagram", val: 2300, suffix: "", display: "2.3K", label: "Seguidores" },
+          { platform: "IG + TikTok", val: 4.8, suffix: "%", display: "4.8%", label: "Engagement" },
+          { platform: "Combinado", val: 50, suffix: "K+", display: "50K+", label: "Alcance Mensual" },
+          { platform: "Promedio", val: 12, suffix: "K", display: "12K", label: "Vistas Promedio" }
+        ],
+        services: {
+          title: "Servicios",
+          label: "Lo que ofrezco",
+          items: [
+            { name: "Contenido UGC", desc: "Creación de videos y fotos orgánicas para las redes sociales de tu marca, diseñados para generar confianza, retención y conversión en la audiencia moderna." },
+            { name: "Modelaje Publicitario", desc: "Participación protagónica o secundaria en campañas publicitarias, comerciales de televisión, videoclips y sesiones de fotografía de producto." },
+            { name: "Campañas en Redes", desc: "Creación de contenido promocional puntual y colaboraciones en Instagram/TikTok para aumentar la visibilidad de tu marca." },
+            { name: "Embajador de Marca", desc: "Representación a largo plazo de tu marca, creando una conexión auténtica y continua con la audiencia para fortalecer la identidad y lealtad." }
+          ]
+        },
+        demographics: {
+          title: "Demografía",
+          label: "Mi Audiencia",
+          items: [
+            { label: "Hombres (18-24)", percent: 34 },
+            { label: "Mujeres (18-24)", percent: 33 },
+            { label: "Otros (25+)", percent: 33 }
+          ]
+        },
+        portfolio: { title: "Portafolio", label: "Trabajos Recientes" },
+        portfolioLabels: ["Sesión Deportiva", "Comercial TV · Movistar", "Street Style · Ciudad", "Lifestyle · Urbano", "Look Formal · Editorial"],
+        cta: {
+          title: "Trabajemos Juntos",
+          desc: "¿Tenés un proyecto en mente? Me encantaría colaborar con tu marca y llevar tu mensaje a la audiencia correcta.",
+          btnPrimary: "Contactar",
+          btnSecondary: "Descargar Media Kit"
+        },
+        rights: "Todos los derechos reservados."
+      },
+      en: {
+        badge: "Media Kit",
+        role: "Commercial Model · Actor",
+        about: "With a dynamic and professional approach, I connect brands with their audience through authentic content, high-impact campaigns, and genuine representation. Specialized in TV commercials and UGC creation.",
+        scroll: "Scroll",
+        brandsLabel: "Brands & Projects",
+        brands: ["Movistar", "Barra Brava", "Barradas", "Amor Animal"],
+        stats: [
+          { platform: "Instagram", val: 15200, suffix: "", display: "15.2K", label: "Followers" },
+          { platform: "IG + TikTok", val: 4.8, suffix: "%", display: "4.8%", label: "Engagement" },
+          { platform: "Combined", val: 120, suffix: "K+", display: "120K+", label: "Monthly Reach" },
+          { platform: "Average", val: 45, suffix: "K", display: "45K", label: "Average Views" }
+        ],
+        services: {
+          title: "Services",
+          label: "What I offer",
+          items: [
+            { name: "UGC Content", desc: "Creation of organic videos and photos for your brand's social media, designed to build trust, retention, and conversion in modern audiences." },
+            { name: "Commercial Modeling", desc: "Lead or supporting roles in advertising campaigns, TV commercials, music videos, and product photography sessions." },
+            { name: "Social Media Campaigns", desc: "One-off collaborations and promotional content creation for Instagram/TikTok to increase your brand's visibility." },
+            { name: "Brand Ambassador", desc: "Long-term representation of your brand, creating an authentic and continuous connection with the audience to strengthen identity and loyalty." }
+          ]
+        },
+        demographics: {
+          title: "Demographics",
+          label: "My Audience",
+          items: [
+            { label: "Men (18-24)", percent: 45 },
+            { label: "Women (18-24)", percent: 35 },
+            { label: "Other (25+)", percent: 20 }
+          ]
+        },
+        portfolio: { title: "Portfolio", label: "Recent Work" },
+        portfolioLabels: ["Sports Session", "TV Commercial · Movistar", "Street Style · City", "Lifestyle · Urban", "Formal Look · Editorial"],
+        cta: {
+          title: "Let's Collaborate",
+          desc: "Have a project in mind? I'd love to partner with your brand and deliver your message to the right audience.",
+          btnPrimary: "Get in Touch",
+          btnSecondary: "Download Media Kit"
+        },
+        rights: "All rights reserved."
+      }
+    };
+
+    // ─── SVG ICONS ───
+    const Icons = {
+      Sun: () => <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="5" stroke="currentColor" strokeWidth="2" /><path stroke="currentColor" strokeWidth="2" strokeLinecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" /></svg>,
+      Moon: () => <svg viewBox="0 0 24 24" fill="none"><path stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" /></svg>,
+      Download: () => <svg viewBox="0 0 24 24" fill="none"><path stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" /></svg>,
+      Mail: () => <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" strokeWidth="2" /><polyline points="22,6 12,13 2,6" stroke="currentColor" strokeWidth="2" fill="none" /></svg>,
+      Phone: () => <svg viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.81.36 1.87.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.94.34 2 .57 2.81.7A2 2 0 0 1 22 16.92z" stroke="currentColor" strokeWidth="2" /></svg>,
+      Location: () => <svg viewBox="0 0 24 24" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" stroke="currentColor" strokeWidth="2" /><circle cx="12" cy="10" r="3" stroke="currentColor" strokeWidth="2" /></svg>,
+      Instagram: () => <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" strokeWidth="2" /><circle cx="12" cy="12" r="4.5" stroke="currentColor" strokeWidth="2" /><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" /></svg>,
+      TikTok: () => <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76c-.35 0-.68-.03-1.01-.07z" /></svg>,
+      YouTube: () => <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" /></svg>,
+      Kick: () => <svg viewBox="0 0 24 24" fill="currentColor"><path d="M1.333 0h6.666v7.333h3.334l6.667-7.333h6l-7.334 9.333L24 24h-7.333l-7.334-9.333H8v9.333H1.333V0z" /></svg>,
+      Arrow: () => <svg viewBox="0 0 24 24" fill="none"><path stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M12 5l7 7-7 7" /></svg>
+    };
+
+    const CONTACT = {
+      phone: "+598 93 623 492",
+      mail: "dilanberriel18@gmail.com",
+      location: "Montevideo, Uruguay",
+      instagram: "https://www.instagram.com/dilanberriel",
+      tiktok: "https://www.tiktok.com/@dilanberriel",
+      youtube: "https://www.youtube.com/@eldioren",
+      kick: "https://kick.com/dioren",
+      whatsapp: "https://wa.me/59893623492",
+      mainImage: "Images/FotoPerfil.jpg",
+      portfolio: [
+        "Images/foto1.jpg",
+        "Images/foto2.jpg",
+        "Images/foto3.jpg",
+        "Images/foto4.jpg",
+        "Images/foto5.png"
+      ]
+    };
+
+    // ─── CountUp Hook ───
+    const useCountUp = (end, duration = 2000, startOnView = false) => {
+      const [count, setCount] = useState(0);
+      const [hasStarted, setHasStarted] = useState(false);
+      const ref = useRef(null);
+
+      const start = useCallback(() => {
+        if (hasStarted) return;
+        setHasStarted(true);
+        const startTime = performance.now();
+        const animate = (now) => {
+          const elapsed = now - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          setCount(eased * end);
+          if (progress < 1) requestAnimationFrame(animate);
+        };
+        requestAnimationFrame(animate);
+      }, [end, duration, hasStarted]);
+
+      return { count, ref, start, hasStarted };
+    };
+
+    // ─── APP ───
+    const App = () => {
+      const [lang, setLang] = useState('es');
+      const [isDark, setIsDark] = useState(true);
+      const [isGenerating, setIsGenerating] = useState(false);
+      const [showFloating, setShowFloating] = useState(true);
+      const [lightboxImg, setLightboxImg] = useState(null);
+      const lastScrollY = useRef(0);
+      const containerRef = useRef(null);
+      const t = T[lang];
+
+      // ─── STAT BOX COMPONENT ───
+      const StatBox = ({ stat, index }) => {
+        const ref = useRef(null);
+        const isInView = useInView(ref, { once: true, margin: "-50px" });
+        const { count, start, hasStarted } = useCountUp(stat.val, 2000);
+
+        useEffect(() => {
+          if (isInView && !hasStarted) start();
+        }, [isInView, hasStarted, start]);
+
+        const formatNumber = (n) => {
+          if (stat.display.includes('K') && stat.val > 1000) {
+            return (n / 1000).toFixed(1) + 'K';
+          }
+          if (stat.suffix === '%') return n.toFixed(1) + '%';
+          if (stat.suffix === 'K+') return Math.floor(n) + 'K+';
+          if (stat.suffix === 'K') return Math.floor(n) + 'K';
+          return (n / 1000).toFixed(1) + 'K';
+        };
+
+        return (
+          <div ref={ref} className="stat-box">
+            <div className="stat-platform">
+              {stat.platform === 'Instagram' && <Icons.Instagram />}
+              {stat.platform === 'TikTok' && <Icons.TikTok />}
+              {stat.platform === 'IG + TikTok' && <><Icons.Instagram /><Icons.TikTok /></>}
+              {stat.platform}
+            </div>
+            <div className="stat-number">
+              {(isGenerating || isInView) ? (isGenerating ? stat.display : formatNumber(count)) : '0'}
+            </div>
+            <div className="stat-label">{stat.label}</div>
+          </div>
+        );
+      };
+
+      // ─── BAR PROGRESS ───
+      const BarProgress = ({ percent, label, delay }) => {
+        return (
+          <div className="demo-bar-wrap">
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay }}
+              viewport={{ once: true }}
+              className="demo-bar-header"
+              style={isGenerating ? { opacity: 1, transform: 'none' } : {}}
+            >
+              <div className="demo-bar-label">{label}</div>
+              <div className="demo-bar-percent">{percent}%</div>
+            </motion.div>
+            <div className="demo-bar-track">
+              <motion.div
+                className="demo-bar-fill"
+                initial={{ width: 0 }}
+                whileInView={{ width: `${percent}%` }}
+                transition={{ duration: 1.2, delay: delay + 0.3, ease: "easeOut" }}
+                viewport={{ once: true }}
+                style={isGenerating ? { width: `${percent}%` } : {}}
+              />
+            </div>
+          </div>
+        );
+      };
+
+      useEffect(() => {
+        document.documentElement.classList.toggle('light', !isDark);
+      }, [isDark]);
+
+      useEffect(() => {
+        const handleScroll = () => {
+          const currentScrollY = window.scrollY;
+          if (currentScrollY > 100 && currentScrollY > lastScrollY.current) {
+            setShowFloating(false);
+          } else {
+            setShowFloating(true);
+          }
+          lastScrollY.current = currentScrollY;
+        };
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
+      }, []);
+
+      const downloadPDF = () => {
+        const link = document.createElement('a');
+        const filename = lang === 'en' ? 'Dilan Berriel _ Media Kit-En.pdf' : 'Dilan Berriel _ Media Kit.pdf';
+        link.href = filename;
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      };
+
+      return (
+        <>
+          <AnimatePresence>
+            {isGenerating && (
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="pdf-overlay">
+                <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1.2, ease: "linear" }} style={{ marginBottom: 20, width: 28, height: 28 }}>
+                  <Icons.Sun />
+                </motion.div>
+                Generating...
+              </motion.div>
+            )}
+
+            {lightboxImg && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="lightbox-overlay"
+                onClick={() => setLightboxImg(null)}
+              >
+                <button className="lightbox-close" onClick={() => setLightboxImg(null)}>✕</button>
+                <motion.img
+                  initial={{ scale: 0.85, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0.85, opacity: 0 }}
+                  transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                  src={lightboxImg}
+                  alt="Enlarged Portfolio"
+                  className="lightbox-img"
+                  onClick={(e) => e.stopPropagation()}
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Floating Actions */}
+          <div className="floating-actions" data-html2canvas-ignore="true" style={{
+            opacity: showFloating ? 1 : 0,
+            transform: showFloating ? 'translateY(0)' : 'translateY(-150px)',
+            pointerEvents: showFloating ? 'auto' : 'none',
+            transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
+          }}>
+            <button className="btn-action" onClick={() => setLang(lang === 'es' ? 'en' : 'es')} title="Language">{lang.toUpperCase()}</button>
+            <button className="btn-action" onClick={() => setIsDark(!isDark)} title="Theme">
+              {isDark ? <Icons.Sun /> : <Icons.Moon />}
+            </button>
+            <button className="btn-action" onClick={downloadPDF} title="Download PDF"><Icons.Download /></button>
+          </div>
+
+          <div ref={containerRef} style={{ background: 'var(--bg)' }}>
+            <div className="container">
+
+            {/* ═══ HERO ═══ */}
+            <section className="hero">
+              <motion.div initial={{ opacity: 0, x: -60 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 1, ease: "easeOut" }} className="hero-text">
+
+
+                <h1 className="hero-title">
+                  {"Dilan".split('').map((char, i) => (
+                    <span key={'d' + i} className="letter" style={{ animationDelay: `${i * 0.08}s` }}>{char}</span>
+                  ))}
+                  <span className="hero-title-outline">
+                    {"Berriel".split('').map((char, i) => (
+                      <span key={'b' + i} className="letter" style={{ animationDelay: `${("Dilan".length * 0.08) + (i * 0.08)}s` }}>{char}</span>
+                    ))}
+                  </span>
+                </h1>
+
+                <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.5 }} className="hero-role">
+                  {t.role}
+                </motion.div>
+
+                <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7 }} className="hero-desc">
+                  {t.about}
+                </motion.p>
+
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.9 }} className="hero-socials">
+                  <a href={CONTACT.instagram} target="_blank" rel="noreferrer" className="social-link" title="Instagram"><Icons.Instagram /></a>
+                  <a href={CONTACT.tiktok} target="_blank" rel="noreferrer" className="social-link" title="TikTok"><Icons.TikTok /></a>
+                  <a href={CONTACT.youtube} target="_blank" rel="noreferrer" className="social-link" title="YouTube"><Icons.YouTube /></a>
+                  <a href={CONTACT.kick} target="_blank" rel="noreferrer" className="social-link" title="Kick"><Icons.Kick /></a>
+                </motion.div>
+              </motion.div>
+
+              <motion.div initial={{ opacity: 0, scale: 0.92 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.2, delay: 0.2 }} className="hero-image-wrapper">
+                <img src={CONTACT.mainImage} alt="Dilan Berriel" className="hero-image" />
+
+                <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 1 }} className="contact-card">
+                  <a href={CONTACT.whatsapp} target="_blank" rel="noreferrer" className="contact-item"><Icons.Phone /> {CONTACT.phone}</a>
+                  <a href={`mailto:${CONTACT.mail}`} className="contact-item"><Icons.Mail /> {CONTACT.mail}</a>
+                  <div className="contact-item"><Icons.Location /> {CONTACT.location}</div>
+                </motion.div>
+              </motion.div>
+
+
+            </section>
+
+            {/* ═══ STATS ═══ */}
+            <div className="stats-wrapper">
+              <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }} className="stats-container">
+                {t.stats.map((stat, i) => <StatBox key={i} stat={stat} index={i} />)}
+              </motion.div>
+            </div>
+
+            {/* ═══ BRANDS ═══ */}
+            <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 1 }} viewport={{ once: true }}>
+              <div className="brands-strip">
+                {t.brands.map((brand, i) => (
+                  <motion.div key={i} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }} viewport={{ once: true }} className="brand-item">
+                    {brand}
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* ═══ SERVICES ═══ */}
+            <section className="section">
+              <div className="marquee-container">
+                <div className="marquee-content">
+                  <div className="marquee-item">
+                    <span>✦ {t.services.label}</span>
+                    <span>CREATIVE DIRECTION</span>
+                    <span>✦ {t.services.label}</span>
+                    <span>CONTENT CREATION</span>
+                    <span>✦ {t.services.label}</span>
+                    <span>BRANDING</span>
+                    <span>✦ {t.services.label}</span>
+                    <span>CREATIVE DIRECTION</span>
+                    <span>✦ {t.services.label}</span>
+                    <span>CONTENT CREATION</span>
+                    <span>✦ {t.services.label}</span>
+                    <span>BRANDING</span>
+                  </div>
+                </div>
+              </div>
+
+              <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }}>
+                <div className="section-header" style={{ marginBottom: '50px' }}>
+                  <h2 className="section-title">{t.services.title}</h2>
+                </div>
+                <div className="services-list">
+                  {t.services.items.map((srv, i) => (
+                    <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }} viewport={{ once: true }} className="service-row">
+                      <div className="service-number">0{i + 1}</div>
+                      <div className="service-content">
+                        <div className="service-name">{srv.name}</div>
+                        <div className="service-desc">{srv.desc}</div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </section>
+
+            {/* ═══ DEMOGRAPHICS ═══ */}
+            <section className="section">
+              <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }}>
+                <div className="section-header">
+                  <h2 className="section-title">{t.demographics.title}</h2>
+                </div>
+                <div className="demo-container">
+                  {t.demographics.items.map((demo, i) => (
+                    <BarProgress key={i} percent={demo.percent} label={demo.label} delay={i * 0.15} />
+                  ))}
+                </div>
+              </motion.div>
+            </section>
+
+            {/* ═══ PORTFOLIO ═══ */}
+            <section className="section" data-html2canvas-ignore={isGenerating ? "true" : undefined}>
+              <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }}>
+                <div className="section-header" style={{ textAlign: 'center' }}>
+                  <div className="section-label">{t.portfolio.label}</div>
+                  <h2 className="section-title">{t.portfolio.title}</h2>
+                </div>
+
+                <div className="portfolio-grid">
+                  {CONTACT.portfolio.map((img, i) => (
+                    <motion.div key={i} className="port-item" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.08 }} viewport={{ once: true }} onClick={() => setLightboxImg(img)} style={isGenerating ? { opacity: 1, transform: 'none' } : {}}>
+                      <img src={img} alt={t.portfolioLabels[i]} loading="eager" />
+                      <div className="port-overlay">
+                        <span className="port-label">{t.portfolioLabels[i]}</span>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </section>
+
+            {/* ═══ CTA ═══ */}
+            <section className="cta-section">
+              <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '20px', marginBottom: '35px' }}>
+                  <div style={{ flex: 1, maxWidth: '200px', height: '2px', background: 'var(--glass-border)' }} />
+                  <span style={{ color: 'var(--accent)', fontSize: '0.75rem', letterSpacing: '4px', fontFamily: 'Space Grotesk', fontWeight: 600 }}>✦</span>
+                  <div style={{ flex: 1, maxWidth: '200px', height: '2px', background: 'var(--glass-border)' }} />
+                </div>
+                <h2 className="cta-title">{t.cta.title}</h2>
+                <p className="cta-desc">{t.cta.desc}</p>
+                <div className="cta-buttons">
+                  <a href={`mailto:${CONTACT.mail}`} className="cta-btn cta-btn-primary">
+                    {t.cta.btnPrimary}
+                    <Icons.Arrow />
+                  </a>
+                  <button className="cta-btn cta-btn-outline" onClick={downloadPDF}>
+                    <Icons.Download />
+                    {t.cta.btnSecondary}
+                  </button>
+                </div>
+              </motion.div>
+            </section>
+
+            {/* ═══ FOOTER ═══ */}
+            <footer className="footer">
+              <div className="footer-text">&copy; {new Date().getFullYear()} Dilan Berriel. {t.rights}</div>
+              
+              <div className="creator-watermark">
+                <img
+                  src="signaturenobackground.png"
+                  alt="Created by Alay"
+                  className="creator-signature"
+                />
+                <div className="creator-socials">
+                  {/* Instagram */}
+                  <a href="https://www.instagram.com/alaybuilds?igsh=ZjM4dWtjaWFrMXly" target="_blank" rel="noreferrer" className="creator-social-link" title="Instagram @alaybuilds">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <defs>
+                        <linearGradient id="ig-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+                          <stop offset="0%" stopColor="#f09433" />
+                          <stop offset="25%" stopColor="#e6683c" />
+                          <stop offset="50%" stopColor="#dc2743" />
+                          <stop offset="75%" stopColor="#cc2366" />
+                          <stop offset="100%" stopColor="#bc1888" />
+                        </linearGradient>
+                      </defs>
+                      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="url(#ig-grad)" strokeWidth="2" />
+                      <circle cx="12" cy="12" r="4" stroke="url(#ig-grad)" strokeWidth="2" />
+                      <circle cx="17.5" cy="6.5" r="1" fill="url(#ig-grad)" />
+                    </svg>
+                  </a>
+                  {/* TikTok */}
+                  <a href="https://www.tiktok.com/@alaydev?_r=1&_t=ZS-954TvKctxc0" target="_blank" rel="noreferrer" className="creator-social-link" title="TikTok @alaydev">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z" fill="var(--text-primary)" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </footer>
+
+          </div>
+        </div>
+        </>
+      );
+    };
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+
+</html>

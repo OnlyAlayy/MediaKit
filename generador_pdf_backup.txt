@@ -1,0 +1,67 @@
+// ============================================================
+// === CÓDIGO DE RESPALDO: MÉTODOS DE DESCARGA DE PDF ===
+// ============================================================
+
+
+// ── MÉTODO ACTUAL (Activo en index.html) ─────────────────────
+// Descarga directa del archivo PDF estático según el idioma.
+// Conserva los links interactivos dentro del PDF.
+// Archivos necesarios en la misma carpeta:
+//   - "Dilan Berriel _ Media Kit.pdf"      (Español)
+//   - "Dilan Berriel _ Media Kit-En.pdf"   (Inglés)
+
+const downloadPDF = () => {
+  const link = document.createElement('a');
+  const filename = lang === 'en' ? 'Dilan Berriel _ Media Kit-En.pdf' : 'Dilan Berriel _ Media Kit.pdf';
+  link.href = filename;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
+
+
+// ── MÉTODO ANTERIOR (Generador Dinámico con html2canvas) ─────
+// Genera el PDF en vivo capturando la pantalla con html2canvas.
+// DESVENTAJA: Los links dentro del PDF quedan como imagen plana
+//             (no son clickeables).
+// VENTAJA: Siempre está actualizado con los cambios en la web.
+// Para usarlo, reemplazá la función downloadPDF de arriba con esta.
+
+const downloadPDF_dinamico = async () => {
+  setIsGenerating(true);
+  await new Promise(r => setTimeout(r, 1500));
+  const el = containerRef.current;
+  if (!el) { setIsGenerating(false); return; }
+  try {
+    window.scrollTo(0, 0);
+    const origStyle = el.getAttribute('style') || '';
+    el.style.width = '1400px';
+    el.style.maxWidth = 'none';
+    const canvas = await html2canvas(el, {
+      scale: 2,
+      useCORS: true,
+      allowTaint: true,
+      backgroundColor: isDark ? '#030303' : '#f5f4f1',
+      windowWidth: 1400,
+      logging: false
+    });
+    el.setAttribute('style', origStyle);
+    const imgData = canvas.toDataURL('image/jpeg', 0.95);
+    const pdf = new window.jspdf.jsPDF({ orientation: 'p', unit: 'px', format: 'a4', hotfixes: ["px_scaling"] });
+    const pw = pdf.internal.pageSize.getWidth();
+    const ph = pdf.internal.pageSize.getHeight();
+    const iw = pw;
+    const ih = (canvas.height * iw) / canvas.width;
+    let hl = ih, pos = 0;
+    pdf.addImage(imgData, 'JPEG', 0, pos, iw, ih);
+    hl -= ph;
+    while (hl > 0) { pos = hl - ih; pdf.addPage(); pdf.addImage(imgData, 'JPEG', 0, pos, iw, ih); hl -= ph; }
+    pdf.save(`DilanBerriel_MediaKit_${lang.toUpperCase()}.pdf`);
+  } catch (e) {
+    console.error(e);
+    // Fallback: print dialog (abrir ventana de imprimir del navegador)
+    el.setAttribute('style', '');
+    window.print();
+  } finally { setIsGenerating(false); }
+};
